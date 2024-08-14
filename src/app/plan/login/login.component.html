@@ -1,0 +1,89 @@
+<!-- <div class="bg-gray-300 py-5">
+    <h1 class="text-center  font-medium text-gray-900">Login Page</h1>
+</div> -->
+  <!-- Login Form -->
+    <form *ngIf="activeForm=='login'" [formGroup]="loginForm" (ngSubmit)="login()" >
+  <div class="flex min-h-full flex-col justify-center px-6 py-8 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9  text-gray-900">Sign in to your account</h2>
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    
+          <div class="mb-5">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+            <input type="email" id="email" formControlName='email'  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Email" />
+            <div *ngIf="loginForm.get('email')?.hasError('email')
+&&loginForm.get('email').touched" class="text-red-500 text-xs ">Enter Valid Email</div>
+          </div>
+          
+          <div class="mb-5">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <input type="password" formControlName='password' id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Password" />
+          </div>
+        
+          <div>
+            <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+          </div>
+          <p class="text-center font-medium text-gray-900 dark:text-white">or</p>
+          <!-- <div>
+            <button type="" (click)="toggleForm('register')" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Register</button>
+          </div> -->
+          <p (click)="toggleForm('register')" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer">Register
+          </p>
+ 
+    </div>
+  </div>
+</form>
+
+  <!-- Register Form -->
+  
+    <form class="max-w-sm mx-auto border-gray-600" *ngIf="activeForm=='register'" [formGroup]="registerForm" (ngSubmit)="register()"  >
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register</h2>
+      </div>
+      <div class="mb-5">
+        <label for="username" class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white">Name<div class="text-red-500">*</div></label>
+        <input type="text" id="username" formControlName='name' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Username" />
+        <div *ngIf="registerForm.get('name')?.hasError('required')
+&&registerForm.get('name').touched" class="text-red-500 text-xs ">Name is required</div>
+      </div>
+        <div class="mb-5">
+          <label for="email" class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white">Email<div class="text-red-500">*</div></label>
+          <input type="email" id="email" formControlName='email' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Email" />
+          <div *ngIf="registerForm.get('email')?.hasError('email')
+&&registerForm.get('email').touched" class="text-red-500 text-xs ">Enter Valid Email</div>
+<div *ngIf="registerForm.get('email')?.hasError('required')
+&&registerForm.get('email').touched" class="text-red-500 text-xs ">Email is Required</div>
+        </div>
+
+        <div class="mb-5">
+          <label for="password" class="flex block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password<div class="text-red-500">*</div></label>
+          <input type="text" id="password" formControlName='password' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Password" />
+        <div *ngIf="registerForm.get('password')?.hasError('required')
+&&registerForm.get('password').touched" class="text-red-500 text-xs ">Password is Required</div>
+        </div>
+        <div class="flex">
+            <div class="mb-5">
+                <label for="mobile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mobile Number</label>
+                <input type="text" id="mobile" formControlName='mobile' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Mobile Number" />
+              </div>
+
+              <div class="mb-5 px-5 ">                
+                <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                <!-- <div class="flex my-3 ">  -->
+                <!-- <input type="radio" id="gender" formControlName='gender' class=""  /><div class="text-sm font-medium text-gray-900">M</div>
+                <input type="radio" id="gender" formControlName='gender' class="ml-5"/><div class="text-sm font-medium text-gray-900">F</div>
+                </div> 
+              </div>  -->
+              <mat-radio-group class="flex">
+                <mat-radio-button value="male" >Male</mat-radio-button>
+                <mat-radio-button value="female"  >Female</mat-radio-button>
+              </mat-radio-group>
+              </div>
+        </div>
+       
+        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+        <p (click)="toggleForm('login')" class="flex w-full justify-center  text-sm font-semibold  text-black  cursor-pointer">Return</p>
+      </form>
+
